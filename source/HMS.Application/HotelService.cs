@@ -32,6 +32,6 @@ public class HotelService
         if (bookings.Count == 0)
             return roomCount;
         
-        return roomCount - bookings.Count;
+        return roomCount - bookings.MinimumRoomsDemand();
     }
 }
