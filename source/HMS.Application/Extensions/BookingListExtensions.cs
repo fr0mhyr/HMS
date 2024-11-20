@@ -1,8 +1,8 @@
 using HMS.Domain;
 
-namespace HMS.Application;
+namespace HMS.Application.Extensions;
 
-public static class OverlappingBookingHelper
+public static class BookingListExtensions
 {
     public static int MinimumRoomsDemand(this IList<Booking> bookings)
     {
