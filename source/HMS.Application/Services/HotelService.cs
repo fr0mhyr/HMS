@@ -1,10 +1,11 @@
 ﻿using ErrorOr;
 using HMS.Application.Common;
 using HMS.Application.Extensions;
+using HMS.Application.Models;
 
-namespace HMS.Application;
+namespace HMS.Application.Services;
 
-public class HotelService
+public class HotelService : IHotelService
 {
     private readonly IHotelRepository _hotelRepository;
     private readonly IBookingRepository _bookingRepository;

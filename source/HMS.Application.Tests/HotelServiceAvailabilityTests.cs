@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using FluentAssertions;
 using HMS.Application.Common;
+using HMS.Application.Services;
 using HMS.Domain;
 using NSubstitute;
 using Xunit;
