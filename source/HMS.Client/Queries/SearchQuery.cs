@@ -1,4 +1,3 @@
-using System.Text;
 using ErrorOr;
 using HMS.Application.Services;
 
@@ -28,13 +27,12 @@ public class SearchQuery : IQuery
         if (result.IsError)
             return result.Errors;
 
-        StringBuilder response = new StringBuilder();
+        if (result.Value.Count == 0)
+            return Environment.NewLine;
 
-        foreach (var r in result.Value)
-            response.AppendLine(
-                $"({r.StartDate.ToString(DateFormat)}-{r.EndDate.ToString(DateFormat)}, {r.RoomCount})");
-
-        return response.ToString();
+        return string.Join(", ",
+            result.Value.Select(r =>
+                $"({r.StartDate.ToString(DateFormat)}-{r.EndDate.ToString(DateFormat)}, {r.RoomCount})"));
     }
 
     private ErrorOr<SearchQueryParameters> ParseInput(string input)

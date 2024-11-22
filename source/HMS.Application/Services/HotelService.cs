@@ -21,15 +21,12 @@ public class HotelService : IHotelService
 
     public ErrorOr<int> Availability(string hotelId, DateTime startDate, DateTime endDate, string roomType)
     {
-        var hotel = _hotelRepository.GetById(hotelId);
+        var hotelRoomCount = GetHotelRoomCount(hotelId, roomType);
 
-        if (hotel == null)
-            return Error.NotFound($"No hotel found with id {hotelId}");
+        if (hotelRoomCount.IsError)
+            return hotelRoomCount.Errors;
 
-        var roomCount = hotel.Rooms.Count(r => r.RoomType == roomType);
-
-        if (roomCount == 0)
-            return Error.NotFound($"The hotel does not have rooms of a {roomType} type");
+        var roomCount = hotelRoomCount.Value;
 
         var bookings = _bookingRepository.GetBookings(hotelId, roomType, startDate, endDate);
 
@@ -41,16 +38,13 @@ public class HotelService : IHotelService
 
     public ErrorOr<IList<RoomTypeAvailabilityRange>> Search(string hotelId, string roomType, int days)
     {
-        var hotel = _hotelRepository.GetById(hotelId);
+        var hotelRoomCount = GetHotelRoomCount(hotelId, roomType);
 
-        if (hotel == null)
-            return Error.NotFound($"No hotel found with id {hotelId}");
+        if (hotelRoomCount.IsError)
+            return hotelRoomCount.Errors;
 
-        var roomCount = hotel.Rooms.Count(r => r.RoomType == roomType);
-
-        if (roomCount == 0)
-            return Error.NotFound($"The hotel does not have rooms of a {roomType} type");
-
+        var roomCount = hotelRoomCount.Value;
+        
         DateTime startDate = _dateService.NowDate;
         DateTime endDate = _dateService.NowDate.AddDays(days - 1);
 
@@ -112,5 +106,20 @@ public class HotelService : IHotelService
         }
 
         return result;
+    }
+
+    private ErrorOr<int> GetHotelRoomCount(string hotelId, string roomType)
+    {
+        var hotel = _hotelRepository.GetById(hotelId);
+
+        if (hotel == null)
+            return Error.NotFound($"No hotel found with id {hotelId}");
+
+        var roomCount = hotel.Rooms.Count(r => r.RoomType == roomType);
+
+        if (roomCount == 0)
+            return Error.NotFound($"The hotel does not have rooms of a {roomType} type");
+
+        return roomCount;
     }
 }
