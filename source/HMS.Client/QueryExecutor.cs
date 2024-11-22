@@ -1,5 +1,5 @@
 using ErrorOr;
-using HMS.Client.Queries.Interfaces;
+using HMS.Client.Queries;
 
 namespace HMS.Client;
 

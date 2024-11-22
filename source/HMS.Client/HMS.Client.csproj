@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HMS.Application\HMS.Application.csproj" />
+    <ProjectReference Include="..\HMS.Infrastructure\HMS.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

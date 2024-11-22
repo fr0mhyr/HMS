@@ -1,5 +1,5 @@
 using System.Reflection;
-using HMS.Client.Queries.Interfaces;
+using HMS.Client.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HMS.Client;
@@ -9,7 +9,7 @@ public static class DependencyInjection
     public static IServiceCollection AddClient(this IServiceCollection services)
     {
         AddQueries(services);
-
+        
         services.AddTransient<QueryExecutor>();
         
         return services;

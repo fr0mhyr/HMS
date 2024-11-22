@@ -1,13 +1,15 @@
 ﻿using Cocona;
 using HMS.Application;
 using HMS.Client;
+using HMS.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = CoconaApp.CreateBuilder();
 
 builder.Services
     .AddClient()
-    .AddApplication();
+    .AddApplication()
+    .AddInfrastructure();
 
 var app = builder.Build();
 

@@ -1,6 +1,8 @@
-namespace HMS.Client.Queries.Interfaces;
+using ErrorOr;
+
+namespace HMS.Client.Queries;
 
 public interface IQuery
 {
-    string Execute(string arguments);
+    ErrorOr<string> Execute(string input);
 }
