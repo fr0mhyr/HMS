@@ -1,43 +1,29 @@
-﻿using Cocona;
-using HMS.Application;
-using HMS.Client;
+﻿using HMS.Application;
 using HMS.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
-var builder = CoconaApp.CreateBuilder();
+namespace HMS.Client;
 
-builder.Services
-    .AddClient()
-    .AddApplication()
-    .AddInfrastructure();
-
-var app = builder.Build();
-
-app.AddCommand((string? hotels, string? bookings, [FromService] IServiceProvider serviceProvider) =>
+internal static class Program
 {
-    var queryExecutor = serviceProvider.GetService<QueryExecutor>();
-
-    if (queryExecutor == null)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Invalid QueryExecutor service");
-        return;
-    }
-    
-    while (true)
-    {
-        Console.Write("> ");
-        var input = Console.ReadLine();
-        
-        if (string.IsNullOrWhiteSpace(input))
+        if (args.Length != 4)
         {
-            Console.WriteLine("Exiting program.");
-            break;
+            Console.WriteLine("Wrong parameters. Expected 4 arguments. --hotels hotels.json --bookings bookings.json");
+            return;
         }
         
-        var result = queryExecutor.Execute(input);
-        
-        Console.WriteLine(result);
-    }
-});
+        var serviceCollection = new ServiceCollection();
 
-app.Run();
+        serviceCollection
+            .AddClient(args[1], args[3])
+            .AddApplication()
+            .AddInfrastructure();
+        
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        var application = serviceProvider.GetRequiredService<Application>();
+        application.Run();
+    }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "H0",
+    "name": "Generated Hotel",
+    "roomTypes": [
+      {
+        "code": "RT0",
+        "description": "Room Type 0",
+        "amenities": ["WiFi", "TV"],
+        "features": ["Non-smoking"]
+      }
+    ],
+    "rooms": [
+      {
+        "roomType": "RT0",
+        "roomId": "001"
+      },
+      {
+        "roomType": "RT0",
+        "roomId": "002"
+      },
+      {
+        "roomType": "RT0",
+        "roomId": "003"
+      }
+    ]
+  }
+]

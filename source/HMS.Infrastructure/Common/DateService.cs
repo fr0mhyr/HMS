@@ -4,5 +4,5 @@ namespace HMS.Infrastructure.Common;
 
 public class DateService : IDateService
 {
-    public DateTime NowDate => DateTime.Now;
+    public DateTime NowDate => DateTime.Now.Date;
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "hotelId": "H0",
+    "roomType": "RT0",
+    "arrival": "20241225",
+    "departure": "20250110"
+  },
+  {
+    "hotelId": "H0",
+    "roomType": "RT0",
+    "arrival": "20250108",
+    "departure": "20250201"
+  },
+  {
+    "hotelId": "H0",
+    "roomType": "RT0",
+    "arrival": "20250103",
+    "departure": "20250109"
+  },
+  {
+    "hotelId": "H0",
+    "roomType": "RT0",
+    "arrival": "20250108",
+    "departure": "20250202"
+  },
+  {
+    "hotelId": "H0",
+    "roomType": "RT0",
+    "arrival": "20250107",
+    "departure": "20250113"
+  }
+]
