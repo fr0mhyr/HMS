@@ -7,7 +7,6 @@ Hotel Management System
 $ dotnet build
 ```
 
-### Run
 ```sh
 $ dotnet run --project ./source/HMS.Client --hotels hotels.json --bookings bookings.json
 ```
