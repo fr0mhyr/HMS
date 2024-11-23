@@ -27,7 +27,7 @@ public class Application
                 var result = _queryExecutor.Execute(input);
 
                 if (result.IsError)
-                    Console.WriteLine($"Error: {result.FirstError}");
+                    Console.WriteLine($"Error: {result.FirstError.Code}");
                 else
                     Console.WriteLine(result.Value);
             }

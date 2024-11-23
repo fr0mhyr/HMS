@@ -4,11 +4,11 @@ Hotel Management System
 ### Build and Run
 
 ```sh
-$ dotnet build
+dotnet build
 ```
 
 ```sh
-$ dotnet run --project ./source/HMS.Client --hotels hotels.json --bookings bookings.json
+dotnet run --project ./source/HMS.Client --hotels hotels.json --bookings bookings.json
 ```
 
 ### Actions
